@@ -6,7 +6,7 @@
 <div class="flex justify-between items-center mb-6">
     <h1 class="text-3xl font-bold text-gray-800">All Students</h1>
     <a href="{{ route('students.create') }}" 
-       class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+       class="bg-red-800 text-white px-6 py-2 rounded-lg hover:bg-red-900 transition">
         + Add New Student
     </a>
 </div>
@@ -48,7 +48,7 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm">
                             <a href="{{ route('students.show', $student) }}" 
-                               class="text-indigo-600 hover:text-indigo-900 font-medium">
+                               class="text-red-800 hover:text-red-900 font-medium">
                                 View Profile
                             </a>
                         </td>

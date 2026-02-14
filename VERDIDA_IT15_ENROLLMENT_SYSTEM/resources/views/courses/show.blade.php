@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="mb-6">
-    <a href="{{ route('courses.index') }}" class="text-indigo-600 hover:text-indigo-800 flex items-center">
+    <a href="{{ route('courses.index') }}" class="text-red-800 hover:text-red-900 flex items-center">
         <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
@@ -33,8 +33,8 @@
 
     <div class="border-t pt-6">
         <div class="grid grid-cols-3 gap-4">
-            <div class="bg-indigo-50 rounded-lg p-4">
-                <p class="text-2xl font-bold text-indigo-600">{{ $course->students->count() }}</p>
+            <div class="bg-red-50 rounded-lg p-4">
+                <p class="text-2xl font-bold text-red-800">{{ $course->students->count() }}</p>
                 <p class="text-gray-600 text-sm">Enrolled Students</p>
             </div>
             <div class="bg-blue-50 rounded-lg p-4">
@@ -55,7 +55,7 @@
                 </span>
             </div>
             <div class="w-full bg-gray-200 rounded-full h-3">
-                <div class="bg-indigo-600 h-3 rounded-full transition-all" 
+                <div class="bg-red-800 h-3 rounded-full transition-all" 
                      style="width: {{ $course->capacity > 0 ? ($course->students->count() / $course->capacity * 100) : 0 }}%">
                 </div>
             </div>
@@ -161,7 +161,7 @@
                 </select>
             </div>
             <button type="submit" 
-                    class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+                    class="bg-red-800 text-white px-6 py-2 rounded-lg hover:bg-red-900 transition">
                 Enroll Student
             </button>
         </form>

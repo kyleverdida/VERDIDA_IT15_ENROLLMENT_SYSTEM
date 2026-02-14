@@ -7,29 +7,29 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50">
-    <nav class="bg-indigo-600 text-white shadow-lg">
+    <nav class="bg-red-800 text-white shadow-lg">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center space-x-8">
                     <a href="/" class="text-2xl font-bold">Mini Academic Portal</a>
                     <div class="flex space-x-4">
                         <a href="{{ route('students.index') }}" 
-                           class="hover:bg-indigo-700 px-3 py-2 rounded transition">
+                           class="hover:bg-red-900 px-3 py-2 rounded transition">
                             Students
                         </a>
                         <a href="{{ route('courses.index') }}" 
-                           class="hover:bg-indigo-700 px-3 py-2 rounded transition">
+                           class="hover:bg-red-900 px-3 py-2 rounded transition">
                             Courses
                         </a>
                     </div>
                 </div>
                 <div class="flex space-x-3">
                     <a href="{{ route('students.create') }}" 
-                       class="bg-white text-indigo-600 px-4 py-2 rounded font-semibold hover:bg-gray-100 transition">
+                       class="bg-white text-red-900 px-4 py-2 rounded font-semibold hover:bg-gray-100 transition">
                         + Add Student
                     </a>
                     <a href="{{ route('courses.create') }}" 
-                       class="bg-white text-indigo-600 px-4 py-2 rounded font-semibold hover:bg-gray-100 transition">
+                       class="bg-white text-red-900 px-4 py-2 rounded font-semibold hover:bg-gray-100 transition">
                         + Add Course
                     </a>
                 </div>
@@ -72,7 +72,7 @@
 
     <footer class="bg-gray-800 text-white mt-12">
         <div class="container mx-auto px-4 py-6 text-center">
-            <p>&copy; {{ date('Y') }} Mini Academic Portal. Built with Laravel.</p>
+            <p>&copy; {{ date('Y') }} Mini Academic Portal. Built with Laravel. Built by Verdida.</p>
         </div>
     </footer>
 </body>

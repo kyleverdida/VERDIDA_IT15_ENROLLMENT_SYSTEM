@@ -6,7 +6,7 @@
 <div class="flex justify-between items-center mb-6">
     <h1 class="text-3xl font-bold text-gray-800">All Courses</h1>
     <a href="{{ route('courses.create') }}" 
-       class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+       class="bg-red-800 text-white px-6 py-2 rounded-lg hover:bg-red-900 transition">
         + Add New Course
     </a>
 </div>
@@ -46,7 +46,7 @@
                             </div>
                             
                             <div class="flex-1 bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-indigo-600 h-2.5 rounded-full" 
+                                <div class="bg-red-800 h-2.5 rounded-full" 
                                      style="width: {{ $course->capacity > 0 ? ($course->students_count / $course->capacity * 100) : 0 }}%">
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                     </div>
 
                     <a href="{{ route('courses.show', $course) }}" 
-                       class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition font-semibold">
+                       class="bg-red-800 text-white px-6 py-2 rounded-lg hover:bg-red-900 transition font-semibold">
                         View Details
                     </a>
                 </div>

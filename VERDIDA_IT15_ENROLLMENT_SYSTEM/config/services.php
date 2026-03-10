@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'frontend' => [
+        'api_key' => env('FRONTEND_API_KEY'),
+    ],
+
 ];

@@ -1,26 +1,26 @@
 <?php
 
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization');
-
 use App\Http\Controllers\Api\AuthController;
-use Illuminate\Http\Request;
-
-Route::get('/token-test', function () {
-    $admin = \App\Models\Admin::first();
-    return $admin->createToken('admin-token')->plainTextToken;
-});
+use App\Http\Controllers\Api\CourseController;
+use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\SchoolDayController;
+use App\Http\Controllers\Api\StudentController;
+use App\Http\Controllers\Api\SubjectController;
+use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/me', function (Request $request) {
-        return response()->json($request->user());
-    });
+Route::middleware('auth:sanctum')->group(function (): void {
+    Route::get('/me', [AuthController::class, 'me']);
+    Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::post('/logout', function (Request $request) {
-        $request->user()->currentAccessToken()->delete();
-        return response()->json(['message' => 'Logged out']);
-    });
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+
+    Route::apiResource('students', StudentController::class);
+    Route::apiResource('courses', CourseController::class);
+    Route::apiResource('school-days', SchoolDayController::class);
+    Route::get('/subjects', [SubjectController::class, 'index']);
+
+    Route::post('/students/{student}/courses/{course}', [StudentController::class, 'enroll']);
+    Route::delete('/students/{student}/courses/{course}', [StudentController::class, 'unenroll']);
 });

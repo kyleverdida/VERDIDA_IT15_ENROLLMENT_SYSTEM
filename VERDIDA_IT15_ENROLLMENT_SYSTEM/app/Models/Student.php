@@ -14,8 +14,24 @@ class Student extends Model
         'student_number',
         'first_name',
         'last_name',
+        'middle_name',
+        'gender',
+        'date_of_birth',
+        'contact_number',
+        'address',
         'email',
     ];
+
+    protected $casts = [
+        'date_of_birth' => 'date',
+    ];
+
+    protected $appends = ['name'];
+
+    public function getNameAttribute(): string
+    {
+        return $this->full_name;
+    }
 
     public function courses(): BelongsToMany
     {

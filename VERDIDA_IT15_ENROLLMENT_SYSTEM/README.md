@@ -1,59 +1,157 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# VERDIDA IT15 Enrollment System (Backend)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Laravel backend API for student enrollment, programs, subjects, dashboard analytics, and school-day calendar.
 
-## About Laravel
+## Tech Stack
+- PHP `8.2+` (project currently runs on PHP 8.5.x)
+- Laravel `12`
+- MySQL/MariaDB
+- Laravel Sanctum for token auth
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Backend Setup Instructions
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 1. Go to backend folder
+```powershell
+cd C:\laragon\www\VERDIDA_IT15_ENROLLMENT_SYSTEM\VERDIDA_IT15_ENROLLMENT_SYSTEM
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 2. Install dependencies
+```powershell
+composer install
+```
 
-## Learning Laravel
+### 3. Create environment file
+```powershell
+Copy-Item .env.example .env
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 4. Configure `.env`
+Set your DB values:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```env
+APP_NAME=VERDIDA_Enrollment
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://127.0.0.1:8000
 
-## Laravel Sponsors
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=verdida_enrollment
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 5. Generate app key
+```powershell
+php artisan key:generate
+```
 
-### Premium Partners
+### 6. Run migrations and seeders
+```powershell
+php artisan migrate:fresh --seed
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+This seeds:
+- 500 students
+- 10 degree programs
+- school-day records
+- randomized enrollments
+- default admin account
 
-## Contributing
+Default admin login:
+- Email: `admin@example.com`
+- Password: `password123`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 7. Start backend server
+```powershell
+php artisan serve
+```
 
-## Code of Conduct
+API base URL:
+- `http://127.0.0.1:8000/api`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Useful Commands
 
-## Security Vulnerabilities
+Clear route/config/cache:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```powershell
+php artisan route:clear
+php artisan config:clear
+php artisan cache:clear
+```
 
-## License
+Run tests:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```powershell
+php artisan test
+```
+
+## API Quick Start
+
+1. Login:
+```http
+POST /api/login
+```
+
+2. Use token in protected requests:
+```http
+Authorization: Bearer <token>
+Accept: application/json
+```
+
+3. Main endpoints:
+- `/api/dashboard`
+- `/api/students`
+- `/api/courses`
+- `/api/subjects`
+- `/api/school-days`
+
+For full endpoint docs, see:
+- `docs/API_DOCUMENTATION.md`
+
+## Summary of Files Added Today (2026-03-10)
+
+Based on current git working tree (`??` entries) and files touched today, these are the key newly added backend files/directories:
+
+- `app/Http/Controllers/Api/CourseController.php`
+- `app/Http/Controllers/Api/DashboardController.php`
+- `app/Http/Controllers/Api/SchoolDayController.php`
+- `app/Http/Controllers/Api/StudentController.php`
+- `app/Http/Controllers/Api/SubjectController.php`
+- `app/Http/Controllers/AuthController.php`
+- `app/Http/Controllers/DashboardController.php`
+- `app/Http/Middleware/EnsureApiKeyIsValid.php`
+- `app/Models/SchoolDay.php`
+- `app/Models/User.php`
+- `database/migrations/2026_03_10_000001_add_demographics_to_students_table.php`
+- `database/migrations/2026_03_10_000002_add_department_fields_to_courses_table.php`
+- `database/migrations/2026_03_10_000003_create_school_days_table.php`
+- `database/seeders/CourseSeeder.php`
+- `database/seeders/SchoolDaySeeder.php`
+- `database/seeders/StudentSeeder.php`
+- `database/seeders/StudentsSeeder.php`
+- `docs/`
+
+## Summary of Files Modified Today (2026-03-10)
+
+Based on current git working tree (`M` entries), these are the tracked files modified today:
+
+- `README.md`
+- `app/Http/Controllers/Api/AuthController.php`
+- `app/Models/Course.php`
+- `app/Models/Student.php`
+- `app/Providers/AppServiceProvider.php`
+- `bootstrap/app.php`
+- `config/cors.php`
+- `config/services.php`
+- `database/seeders/DatabaseSeeder.php`
+- `routes/api.php`
+- `tests/Feature/ExampleTest.php`
+
+## Change Narrative (2026-03-10)
+
+Today, the backend was expanded into a complete API layer for enrollment operations, including authentication, dashboard analytics, students, courses/programs, subjects, and school-day management. The data model and seeders were updated so programs are degree-based (for example, BSIT and BSCS), students are automatically enrolled into randomized programs, and student records include demographic fields. Dashboard outputs were aligned with frontend requirements by returning chart-ready payloads and course-distribution values that use full program names and counts. Documentation was also refreshed with full endpoint behavior and updated backend setup instructions in `README.md` and `docs/API_DOCUMENTATION.md`.
+
+Notes:
+- Frontend work is still incomplete.

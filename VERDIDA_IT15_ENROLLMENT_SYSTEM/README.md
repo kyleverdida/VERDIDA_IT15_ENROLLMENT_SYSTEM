@@ -2,6 +2,7 @@
 
 Laravel backend API for student enrollment, programs, subjects, dashboard analytics, and school-day calendar.
 
+
 ## Tech Stack
 - PHP `8.2+` (project currently runs on PHP 8.5.x)
 - Laravel `12`
@@ -32,7 +33,9 @@ Set your DB values:
 APP_NAME=VERDIDA_Enrollment
 APP_ENV=local
 APP_DEBUG=true
-APP_URL=http://127.0.0.1:8000
+APP_URL=https://VERDIDA_IT15_ENROLLMENT_SYSTEM.test
+FORCE_HTTPS=true
+SESSION_SECURE_COOKIE=true
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -63,13 +66,53 @@ Default admin login:
 - Email: `admin@example.com`
 - Password: `password123`
 
-### 7. Start backend server
-```powershell
-php artisan serve
+### 7. Start backend server (HTTPS - required)
+Use Laragon Apache/Nginx (not `php artisan serve`) so API calls use HTTPS.
+
+API base URL (HTTPS):
+- `https://VERDIDA_IT15_ENROLLMENT_SYSTEM.test/api`
+
+## HTTPS API Calling Tutorial (Laragon + Laravel)
+
+Follow this once per machine/project setup.
+
+### 1. Enable virtual host and SSL in Laragon
+1. Open Laragon as Administrator.
+2. Go to Preferences and ensure `Auto-create Virtual Hosts` is enabled.
+3. Ensure hostname pattern is `{name}.test`.
+4. In Laragon menu, enable Apache SSL.
+5. Restart all Laragon services.
+
+### 2. Use the generated project domain
+For this project, the domain is:
+- `https://VERDIDA_IT15_ENROLLMENT_SYSTEM.test`
+
+### 3. Configure Laravel environment for HTTPS
+Update `.env` values:
+
+```env
+APP_URL=https://VERDIDA_IT15_ENROLLMENT_SYSTEM.test
+FORCE_HTTPS=true
+SESSION_SECURE_COOKIE=true
 ```
 
-API base URL:
-- `http://127.0.0.1:8000/api`
+### 4. Clear Laravel caches
+```powershell
+php artisan config:clear
+php artisan cache:clear
+```
+
+### 5. Verify HTTPS endpoint behavior
+Open:
+- `https://VERDIDA_IT15_ENROLLMENT_SYSTEM.test/api/students`
+
+Expected result when not logged in:
+- HTTP `401`
+- Body: `{"message":"Unauthenticated."}`
+
+### 6. Important usage rule
+- For grading/secure API testing, use only `https://VERDIDA_IT15_ENROLLMENT_SYSTEM.test/...`
+- Do not use `http://127.0.0.1:8000/...` for the HTTPS requirement.
 
 ## Useful Commands
 
@@ -110,48 +153,20 @@ Accept: application/json
 For full endpoint docs, see:
 - `docs/API_DOCUMENTATION.md`
 
-## Summary of Files Added Today (2026-03-10)
+## Current Status (2026-03-11)
+- API auth is protected by Sanctum (`auth:sanctum`) except `POST /api/login`.
+- Unauthenticated protected calls return `401` JSON: `{"message":"Unauthenticated."}`.
+- HTTPS API base for local development is `https://VERDIDA_IT15_ENROLLMENT_SYSTEM.test/api`.
 
-Based on current git working tree (`??` entries) and files touched today, these are the key newly added backend files/directories:
+## Update (2026-03-11)
 
-- `app/Http/Controllers/Api/CourseController.php`
-- `app/Http/Controllers/Api/DashboardController.php`
-- `app/Http/Controllers/Api/SchoolDayController.php`
-- `app/Http/Controllers/Api/StudentController.php`
-- `app/Http/Controllers/Api/SubjectController.php`
-- `app/Http/Controllers/AuthController.php`
-- `app/Http/Controllers/DashboardController.php`
-- `app/Http/Middleware/EnsureApiKeyIsValid.php`
-- `app/Models/SchoolDay.php`
-- `app/Models/User.php`
-- `database/migrations/2026_03_10_000001_add_demographics_to_students_table.php`
-- `database/migrations/2026_03_10_000002_add_department_fields_to_courses_table.php`
-- `database/migrations/2026_03_10_000003_create_school_days_table.php`
-- `database/seeders/CourseSeeder.php`
-- `database/seeders/SchoolDaySeeder.php`
-- `database/seeders/StudentSeeder.php`
-- `database/seeders/StudentsSeeder.php`
-- `docs/`
+### What Changed Today
+- Enforced API unauthenticated behavior to return JSON `401` (`{"message":"Unauthenticated."}`) instead of redirecting to a missing `login` route.
+- Confirmed protected API routes are guarded by `auth:sanctum`.
+- Enabled Laravel HTTPS URL forcing via `FORCE_HTTPS=true`.
+- Configured Laragon Apache SSL virtual host for this project so API calls can be served over HTTPS.
+- Updated environment URL to the Laragon HTTPS domain.
 
-## Summary of Files Modified Today (2026-03-10)
-
-Based on current git working tree (`M` entries), these are the tracked files modified today:
-
-- `README.md`
-- `app/Http/Controllers/Api/AuthController.php`
-- `app/Models/Course.php`
-- `app/Models/Student.php`
-- `app/Providers/AppServiceProvider.php`
-- `bootstrap/app.php`
-- `config/cors.php`
-- `config/services.php`
-- `database/seeders/DatabaseSeeder.php`
-- `routes/api.php`
-- `tests/Feature/ExampleTest.php`
-
-## Change Narrative (2026-03-10)
-
-Today, the backend was expanded into a complete API layer for enrollment operations, including authentication, dashboard analytics, students, courses/programs, subjects, and school-day management. The data model and seeders were updated so programs are degree-based (for example, BSIT and BSCS), students are automatically enrolled into randomized programs, and student records include demographic fields. Dashboard outputs were aligned with frontend requirements by returning chart-ready payloads and course-distribution values that use full program names and counts. Documentation was also refreshed with full endpoint behavior and updated backend setup instructions in `README.md` and `docs/API_DOCUMENTATION.md`.
-
-Notes:
-- Frontend work is still incomplete.
+### Why This Matters
+- Protected endpoints now fail securely and predictably for unauthenticated requests.
+- The backend now satisfies the requirement to use HTTPS API calls when accessed through the Laragon domain.

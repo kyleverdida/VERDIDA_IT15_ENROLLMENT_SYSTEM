@@ -1,16 +1,31 @@
 # Frontend Integration Guide
 
-Use this setup in your React frontend so it can connect to the Laravel backend running at `http://127.0.0.1:8000`.
+Use this setup in your React frontend so it can connect to the Laravel backend over HTTPS.
+
+Backend API base:
+- `https://VERDIDA_IT15_ENROLLMENT_SYSTEM.test/api`
+
+Status verified on 2026-03-11:
+- HTTPS API is reachable
+- Protected API calls return JSON `401` when no token is provided
 
 ## Frontend Environment Variables
 
 Create or update your frontend `.env` or `.env.local` file:
 
 ```env
-VITE_API_URL=http://127.0.0.1:8000/api
+VITE_API_URL=https://VERDIDA_IT15_ENROLLMENT_SYSTEM.test/api
 VITE_API_KEY=change-this-api-key
 VITE_API_KEY_HEADER=X-API-KEY
 ```
+
+If your frontend runs on Vite dev server, allow both HTTP and HTTPS origins in backend CORS.
+
+Recommended frontend origins during local development:
+- `http://localhost:5173`
+- `https://localhost:5173`
+- `http://127.0.0.1:5173`
+- `https://127.0.0.1:5173`
 
 ## Axios Client Example
 
@@ -246,3 +261,18 @@ After adding the frontend env values and API client code:
 
 3. Confirm the frontend stores the token.
 4. Call `/me` or `/dashboard` to verify authenticated requests work.
+
+Expected unauthenticated behavior for protected routes:
+
+```json
+{
+  "message": "Unauthenticated."
+}
+```
+
+## HTTPS Notes
+
+1. If browser shows certificate warnings, trust Laragon SSL certificate first.
+2. If frontend is on HTTPS, API must also be HTTPS to avoid mixed-content blocking.
+3. Restart frontend dev server after changing `VITE_*` variables.
+4. Do not use `http://127.0.0.1:8000/api` for security/grading checks.

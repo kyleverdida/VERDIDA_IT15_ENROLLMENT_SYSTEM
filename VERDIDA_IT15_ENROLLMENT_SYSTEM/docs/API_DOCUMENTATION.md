@@ -3,10 +3,13 @@
 ## Overview
 This document describes how each backend API endpoint works in the current Laravel backend.
 
-- Base URL (local): `http://127.0.0.1:8000/api`
+- Base URL (local HTTPS): `https://VERDIDA_IT15_ENROLLMENT_SYSTEM.test/api`
 - Auth: Laravel Sanctum Bearer token
 - Content type: `application/json`
 - Protected endpoints: all routes except `POST /login`
+
+Verified on 2026-03-11:
+- Unauthenticated protected requests return JSON `401` with `{"message":"Unauthenticated."}`.
 
 ## Common Request Headers
 Use these for authenticated routes:
@@ -36,6 +39,14 @@ Seeded admin account:
 - `401 Unauthorized`: invalid credentials or missing/invalid token
 - `422 Unprocessable Entity`: validation errors or enrollment rule violations
 - `200/201`: successful request
+
+Unauthenticated response example (`401`):
+
+```json
+{
+  "message": "Unauthenticated."
+}
+```
 
 Validation error format example:
 
@@ -412,3 +423,12 @@ Success `200`:
 - `PUT|PATCH /api/school-days/{school_day}`
 - `DELETE /api/school-days/{school_day}`
 - `GET /api/subjects`
+
+## HTTPS Verification Commands
+
+Use these commands for quick local checks:
+
+```powershell
+curl.exe -k -i "https://VERDIDA_IT15_ENROLLMENT_SYSTEM.test/api/students"
+curl.exe -k -i -X OPTIONS "https://VERDIDA_IT15_ENROLLMENT_SYSTEM.test/api/students" -H "Origin: https://localhost:5173" -H "Access-Control-Request-Method: GET"
+```

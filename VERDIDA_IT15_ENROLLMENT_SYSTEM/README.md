@@ -150,6 +150,9 @@ Accept: application/json
 - `/api/subjects`
 - `/api/school-days`
 
+Frontend note for full program list:
+- Use `/api/courses?all=1` (or `/api/courses?per_page=all`) when you need all programs at once.
+
 For full endpoint docs, see:
 - `docs/API_DOCUMENTATION.md`
 

@@ -144,6 +144,12 @@ export async function getCourses(params = {}) {
   return data;
 }
 
+// For dropdowns/forms that need the full program list:
+export async function getAllCourses() {
+  const { data } = await api.get('/courses', { params: { all: 1 } });
+  return data;
+}
+
 export async function getCourse(courseId) {
   const { data } = await api.get(`/courses/${courseId}`);
   return data;

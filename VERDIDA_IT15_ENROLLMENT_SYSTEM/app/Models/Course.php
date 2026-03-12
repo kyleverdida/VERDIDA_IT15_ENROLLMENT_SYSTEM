@@ -258,6 +258,222 @@ class Course extends Model
                     ['id' => 10402, 'code' => 'HM421', 'title' => 'Internship and Practicum', 'units' => 6, 'semester' => '2nd', 'prerequisites' => ['HM321']],
                 ],
             ],
+            'BSN' => [
+                '1st year' => [
+                    ['id' => 11101, 'code' => 'NUR111', 'title' => 'Anatomy and Physiology', 'units' => 4, 'semester' => '1st', 'prerequisites' => []],
+                    ['id' => 11102, 'code' => 'NUR121', 'title' => 'Fundamentals of Nursing Practice', 'units' => 3, 'semester' => '2nd', 'prerequisites' => []],
+                ],
+                '2nd year' => [
+                    ['id' => 11201, 'code' => 'NUR211', 'title' => 'Health Assessment', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['NUR121']],
+                    ['id' => 11202, 'code' => 'NUR221', 'title' => 'Maternal and Child Nursing', 'units' => 4, 'semester' => '2nd', 'prerequisites' => ['NUR211']],
+                ],
+                '3rd year' => [
+                    ['id' => 11301, 'code' => 'NUR311', 'title' => 'Medical-Surgical Nursing 1', 'units' => 4, 'semester' => '1st', 'prerequisites' => ['NUR221']],
+                    ['id' => 11302, 'code' => 'NUR321', 'title' => 'Community Health Nursing', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['NUR211']],
+                ],
+                '4th year' => [
+                    ['id' => 11401, 'code' => 'NUR411', 'title' => 'Medical-Surgical Nursing 2', 'units' => 4, 'semester' => '1st', 'prerequisites' => ['NUR311']],
+                    ['id' => 11402, 'code' => 'NUR421', 'title' => 'Nursing Leadership and Management', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['NUR321']],
+                ],
+            ],
+            'BSMT' => [
+                '1st year' => [
+                    ['id' => 12101, 'code' => 'MT111', 'title' => 'General Pathology', 'units' => 3, 'semester' => '1st', 'prerequisites' => []],
+                    ['id' => 12102, 'code' => 'MT121', 'title' => 'Clinical Microscopy', 'units' => 3, 'semester' => '2nd', 'prerequisites' => []],
+                ],
+                '2nd year' => [
+                    ['id' => 12201, 'code' => 'MT211', 'title' => 'Hematology 1', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['MT121']],
+                    ['id' => 12202, 'code' => 'MT221', 'title' => 'Clinical Chemistry 1', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['MT121']],
+                ],
+                '3rd year' => [
+                    ['id' => 12301, 'code' => 'MT311', 'title' => 'Microbiology and Parasitology', 'units' => 4, 'semester' => '1st', 'prerequisites' => ['MT221']],
+                    ['id' => 12302, 'code' => 'MT321', 'title' => 'Immunology and Serology', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['MT211']],
+                ],
+                '4th year' => [
+                    ['id' => 12401, 'code' => 'MT411', 'title' => 'Laboratory Management', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['MT321']],
+                    ['id' => 12402, 'code' => 'MT421', 'title' => 'Medical Technology Internship', 'units' => 6, 'semester' => '2nd', 'prerequisites' => ['MT311']],
+                ],
+            ],
+            'BSPSY' => [
+                '1st year' => [
+                    ['id' => 13101, 'code' => 'PSY111', 'title' => 'Introduction to Psychology', 'units' => 3, 'semester' => '1st', 'prerequisites' => []],
+                    ['id' => 13102, 'code' => 'PSY121', 'title' => 'Developmental Psychology', 'units' => 3, 'semester' => '2nd', 'prerequisites' => []],
+                ],
+                '2nd year' => [
+                    ['id' => 13201, 'code' => 'PSY211', 'title' => 'Abnormal Psychology', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['PSY121']],
+                    ['id' => 13202, 'code' => 'PSY221', 'title' => 'Social Psychology', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['PSY111']],
+                ],
+                '3rd year' => [
+                    ['id' => 13301, 'code' => 'PSY311', 'title' => 'Psychological Assessment', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['PSY211']],
+                    ['id' => 13302, 'code' => 'PSY321', 'title' => 'Experimental Psychology', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['PSY221']],
+                ],
+                '4th year' => [
+                    ['id' => 13401, 'code' => 'PSY411', 'title' => 'Counseling Psychology', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['PSY311']],
+                    ['id' => 13402, 'code' => 'PSY421', 'title' => 'Psychology Practicum', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['PSY321']],
+                ],
+            ],
+            'ABCOMM' => [
+                '1st year' => [
+                    ['id' => 14101, 'code' => 'COMM111', 'title' => 'Introduction to Communication', 'units' => 3, 'semester' => '1st', 'prerequisites' => []],
+                    ['id' => 14102, 'code' => 'COMM121', 'title' => 'Speech and Oral Communication', 'units' => 3, 'semester' => '2nd', 'prerequisites' => []],
+                ],
+                '2nd year' => [
+                    ['id' => 14201, 'code' => 'COMM211', 'title' => 'Journalism Fundamentals', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['COMM121']],
+                    ['id' => 14202, 'code' => 'COMM221', 'title' => 'Media Writing and Production', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['COMM111']],
+                ],
+                '3rd year' => [
+                    ['id' => 14301, 'code' => 'COMM311', 'title' => 'Broadcast Communication', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['COMM221']],
+                    ['id' => 14302, 'code' => 'COMM321', 'title' => 'Communication Research Methods', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['COMM211']],
+                ],
+                '4th year' => [
+                    ['id' => 14401, 'code' => 'COMM411', 'title' => 'Communication Campaign Planning', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['COMM321']],
+                    ['id' => 14402, 'code' => 'COMM421', 'title' => 'Communication Internship', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['COMM311']],
+                ],
+            ],
+            'BSEE' => [
+                '1st year' => [
+                    ['id' => 15101, 'code' => 'EE111', 'title' => 'Engineering Drawing', 'units' => 2, 'semester' => '1st', 'prerequisites' => []],
+                    ['id' => 15102, 'code' => 'EE121', 'title' => 'Basic Electrical Circuits', 'units' => 3, 'semester' => '2nd', 'prerequisites' => []],
+                ],
+                '2nd year' => [
+                    ['id' => 15201, 'code' => 'EE211', 'title' => 'Circuit Analysis', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['EE121']],
+                    ['id' => 15202, 'code' => 'EE221', 'title' => 'Electronics 1', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['EE211']],
+                ],
+                '3rd year' => [
+                    ['id' => 15301, 'code' => 'EE311', 'title' => 'Power Systems 1', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['EE221']],
+                    ['id' => 15302, 'code' => 'EE321', 'title' => 'Control Systems', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['EE221']],
+                ],
+                '4th year' => [
+                    ['id' => 15401, 'code' => 'EE411', 'title' => 'Electrical Design', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['EE311']],
+                    ['id' => 15402, 'code' => 'EE421', 'title' => 'EE Plant and Industrial Safety', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['EE321']],
+                ],
+            ],
+            'BSCE' => [
+                '1st year' => [
+                    ['id' => 16101, 'code' => 'CE111', 'title' => 'Engineering Surveying', 'units' => 3, 'semester' => '1st', 'prerequisites' => []],
+                    ['id' => 16102, 'code' => 'CE121', 'title' => 'Engineering Mechanics', 'units' => 3, 'semester' => '2nd', 'prerequisites' => []],
+                ],
+                '2nd year' => [
+                    ['id' => 16201, 'code' => 'CE211', 'title' => 'Strength of Materials', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['CE121']],
+                    ['id' => 16202, 'code' => 'CE221', 'title' => 'Hydraulics', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['CE121']],
+                ],
+                '3rd year' => [
+                    ['id' => 16301, 'code' => 'CE311', 'title' => 'Structural Theory', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['CE211']],
+                    ['id' => 16302, 'code' => 'CE321', 'title' => 'Transportation Engineering', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['CE221']],
+                ],
+                '4th year' => [
+                    ['id' => 16401, 'code' => 'CE411', 'title' => 'Construction Methods and Project Management', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['CE311']],
+                    ['id' => 16402, 'code' => 'CE421', 'title' => 'Geotechnical Engineering', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['CE321']],
+                ],
+            ],
+            'BSME' => [
+                '1st year' => [
+                    ['id' => 17101, 'code' => 'ME111', 'title' => 'Engineering Materials', 'units' => 3, 'semester' => '1st', 'prerequisites' => []],
+                    ['id' => 17102, 'code' => 'ME121', 'title' => 'Engineering Thermodynamics 1', 'units' => 3, 'semester' => '2nd', 'prerequisites' => []],
+                ],
+                '2nd year' => [
+                    ['id' => 17201, 'code' => 'ME211', 'title' => 'Mechanics of Deformable Bodies', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['ME111']],
+                    ['id' => 17202, 'code' => 'ME221', 'title' => 'Fluid Mechanics', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['ME121']],
+                ],
+                '3rd year' => [
+                    ['id' => 17301, 'code' => 'ME311', 'title' => 'Machine Design 1', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['ME211']],
+                    ['id' => 17302, 'code' => 'ME321', 'title' => 'Manufacturing Processes', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['ME221']],
+                ],
+                '4th year' => [
+                    ['id' => 17401, 'code' => 'ME411', 'title' => 'ME Plant Design', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['ME311']],
+                    ['id' => 17402, 'code' => 'ME421', 'title' => 'Mechanical Engineering Practice', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['ME321']],
+                ],
+            ],
+            'BSAIS' => [
+                '1st year' => [
+                    ['id' => 18101, 'code' => 'AIS111', 'title' => 'Introduction to Accounting Information Systems', 'units' => 3, 'semester' => '1st', 'prerequisites' => []],
+                    ['id' => 18102, 'code' => 'AIS121', 'title' => 'Fundamentals of Financial Accounting', 'units' => 3, 'semester' => '2nd', 'prerequisites' => []],
+                ],
+                '2nd year' => [
+                    ['id' => 18201, 'code' => 'AIS211', 'title' => 'Database Management for AIS', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['AIS111']],
+                    ['id' => 18202, 'code' => 'AIS221', 'title' => 'Accounting Systems Analysis', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['AIS121']],
+                ],
+                '3rd year' => [
+                    ['id' => 18301, 'code' => 'AIS311', 'title' => 'Enterprise Resource Planning', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['AIS211']],
+                    ['id' => 18302, 'code' => 'AIS321', 'title' => 'Internal Controls and IT Audit', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['AIS221']],
+                ],
+                '4th year' => [
+                    ['id' => 18401, 'code' => 'AIS411', 'title' => 'Forensic Accounting Systems', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['AIS321']],
+                    ['id' => 18402, 'code' => 'AIS421', 'title' => 'AIS Capstone Project', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['AIS311']],
+                ],
+            ],
+            'BSTM' => [
+                '1st year' => [
+                    ['id' => 19101, 'code' => 'TM111', 'title' => 'Introduction to Tourism and Hospitality', 'units' => 3, 'semester' => '1st', 'prerequisites' => []],
+                    ['id' => 19102, 'code' => 'TM121', 'title' => 'Philippine Tourism Geography', 'units' => 3, 'semester' => '2nd', 'prerequisites' => []],
+                ],
+                '2nd year' => [
+                    ['id' => 19201, 'code' => 'TM211', 'title' => 'Travel and Tour Operations', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['TM111']],
+                    ['id' => 19202, 'code' => 'TM221', 'title' => 'Airline Operations Management', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['TM121']],
+                ],
+                '3rd year' => [
+                    ['id' => 19301, 'code' => 'TM311', 'title' => 'Events Management', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['TM211']],
+                    ['id' => 19302, 'code' => 'TM321', 'title' => 'Sustainable Tourism Development', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['TM221']],
+                ],
+                '4th year' => [
+                    ['id' => 19401, 'code' => 'TM411', 'title' => 'Tourism Policy and Planning', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['TM321']],
+                    ['id' => 19402, 'code' => 'TM421', 'title' => 'Tourism Internship', 'units' => 6, 'semester' => '2nd', 'prerequisites' => ['TM311']],
+                ],
+            ],
+            'BSED-MATH' => [
+                '1st year' => [
+                    ['id' => 20101, 'code' => 'MTHED111', 'title' => 'College Algebra for Teachers', 'units' => 3, 'semester' => '1st', 'prerequisites' => []],
+                    ['id' => 20102, 'code' => 'MTHED121', 'title' => 'Trigonometry and Analytic Geometry', 'units' => 3, 'semester' => '2nd', 'prerequisites' => []],
+                ],
+                '2nd year' => [
+                    ['id' => 20201, 'code' => 'MTHED211', 'title' => 'Calculus for Secondary Mathematics', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['MTHED121']],
+                    ['id' => 20202, 'code' => 'MTHED221', 'title' => 'Teaching Mathematics in the Secondary Level 1', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['MTHED111']],
+                ],
+                '3rd year' => [
+                    ['id' => 20301, 'code' => 'MTHED311', 'title' => 'Probability and Statistics', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['MTHED211']],
+                    ['id' => 20302, 'code' => 'MTHED321', 'title' => 'Teaching Mathematics in the Secondary Level 2', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['MTHED221']],
+                ],
+                '4th year' => [
+                    ['id' => 20401, 'code' => 'MTHED411', 'title' => 'Assessment and Evaluation in Mathematics', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['MTHED321']],
+                    ['id' => 20402, 'code' => 'MTHED421', 'title' => 'Practice Teaching (Mathematics)', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['MTHED411']],
+                ],
+            ],
+            'BPOLSCI' => [
+                '1st year' => [
+                    ['id' => 21101, 'code' => 'POL111', 'title' => 'Introduction to Political Science', 'units' => 3, 'semester' => '1st', 'prerequisites' => []],
+                    ['id' => 21102, 'code' => 'POL121', 'title' => 'Philippine Politics and Governance', 'units' => 3, 'semester' => '2nd', 'prerequisites' => []],
+                ],
+                '2nd year' => [
+                    ['id' => 21201, 'code' => 'POL211', 'title' => 'Comparative Politics', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['POL111']],
+                    ['id' => 21202, 'code' => 'POL221', 'title' => 'Public Administration', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['POL121']],
+                ],
+                '3rd year' => [
+                    ['id' => 21301, 'code' => 'POL311', 'title' => 'Political Theory', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['POL211']],
+                    ['id' => 21302, 'code' => 'POL321', 'title' => 'International Relations', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['POL211']],
+                ],
+                '4th year' => [
+                    ['id' => 21401, 'code' => 'POL411', 'title' => 'Public Policy Analysis', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['POL321']],
+                    ['id' => 21402, 'code' => 'POL421', 'title' => 'Political Science Research', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['POL311']],
+                ],
+            ],
+            'BSOA' => [
+                '1st year' => [
+                    ['id' => 22101, 'code' => 'OA111', 'title' => 'Office Procedures and Records Management', 'units' => 3, 'semester' => '1st', 'prerequisites' => []],
+                    ['id' => 22102, 'code' => 'OA121', 'title' => 'Keyboarding and Office Applications', 'units' => 3, 'semester' => '2nd', 'prerequisites' => []],
+                ],
+                '2nd year' => [
+                    ['id' => 22201, 'code' => 'OA211', 'title' => 'Administrative Office Management', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['OA111']],
+                    ['id' => 22202, 'code' => 'OA221', 'title' => 'Business Communication', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['OA121']],
+                ],
+                '3rd year' => [
+                    ['id' => 22301, 'code' => 'OA311', 'title' => 'Human Resource Office Operations', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['OA211']],
+                    ['id' => 22302, 'code' => 'OA321', 'title' => 'Office Systems Analysis', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['OA221']],
+                ],
+                '4th year' => [
+                    ['id' => 22401, 'code' => 'OA411', 'title' => 'Executive Office Support Systems', 'units' => 3, 'semester' => '1st', 'prerequisites' => ['OA321']],
+                    ['id' => 22402, 'code' => 'OA421', 'title' => 'Office Administration Internship', 'units' => 3, 'semester' => '2nd', 'prerequisites' => ['OA311']],
+                ],
+            ],
         ];
     }
 

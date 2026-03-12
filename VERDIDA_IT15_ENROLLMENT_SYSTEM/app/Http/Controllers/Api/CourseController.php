@@ -12,7 +12,11 @@ class CourseController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $perPage = (int) $request->query('per_page', 15);
+        $perPageRaw = $request->query('per_page');
+        $all = (!$request->has('all') && !$request->has('per_page'))
+            || filter_var($request->query('all', false), FILTER_VALIDATE_BOOLEAN)
+            || (is_string($perPageRaw) && strtolower($perPageRaw) === 'all');
+        $perPage = $all ? max(1, Course::count()) : (int) ($perPageRaw ?? 15);
         $search = trim((string) $request->query('search', ''));
 
         $courses = Course::query()
@@ -23,7 +27,7 @@ class CourseController extends Controller
                     ->orWhere('department', 'like', "%{$search}%");
             })
             ->orderBy('course_code')
-            ->paginate(max(1, min($perPage, 100)));
+            ->paginate($all ? $perPage : max(1, min($perPage, 100)));
 
         $courses->getCollection()->transform(function (Course $course): Course {
             return $course->append('year_levels');

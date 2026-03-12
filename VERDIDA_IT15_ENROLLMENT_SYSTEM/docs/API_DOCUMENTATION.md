@@ -266,8 +266,14 @@ Success `200`:
 Returns paginated programs with `students_count` and computed fields.
 
 Query params:
-- `per_page` optional integer, max `100`, default `15`
+- `per_page` optional integer, max `100`, default `15` when pagination is explicitly requested
 - `search` optional text (matches code, name, department)
+- `all` optional boolean (`1`, `true`) to return all programs in one response
+- `per_page=all` optional alias to return all programs
+
+Behavior:
+- Default response returns all programs so frontend lists match database count.
+- Use `per_page` only when you want paginated program lists.
 
 Success `200` (Laravel paginator object):
 

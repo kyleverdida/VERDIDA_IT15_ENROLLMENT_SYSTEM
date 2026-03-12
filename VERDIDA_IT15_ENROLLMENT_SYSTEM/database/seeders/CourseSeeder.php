@@ -22,6 +22,18 @@ class CourseSeeder extends Seeder
             ['BEED', 'Bachelor of Elementary Education', 'College of Teacher Education', 152, 210, 'Professional preparation for elementary teaching with focus on pedagogy and child development.'],
             ['BSED-ENG', 'Bachelor of Secondary Education major in English', 'College of Teacher Education', 152, 190, 'Specialized secondary teacher training focused on English language and literature instruction.'],
             ['BSHM', 'Bachelor of Science in Hospitality Management', 'College of Hospitality Education', 158, 230, 'Covers hotel operations, food and beverage management, tourism, and service excellence.'],
+            ['BSN', 'Bachelor of Science in Nursing', 'College of Nursing Education', 172, 200, 'Builds clinical competencies for patient care, community health, and professional nursing practice.'],
+            ['BSMT', 'Bachelor of Science in Medical Technology', 'College of Allied Health Education', 176, 180, 'Covers diagnostic laboratory procedures, clinical microscopy, and biomedical instrumentation.'],
+            ['BSPSY', 'Bachelor of Science in Psychology', 'College of Arts and Sciences', 155, 220, 'Focuses on human behavior, psychological assessment, counseling foundations, and research methods.'],
+            ['ABCOMM', 'Bachelor of Arts in Communication', 'College of Arts and Sciences', 150, 210, 'Develops skills in media writing, public speaking, digital content production, and communication theory.'],
+            ['BSEE', 'Bachelor of Science in Electrical Engineering', 'College of Engineering Education', 170, 170, 'Emphasizes power systems, electronics, control engineering, and electrical design standards.'],
+            ['BSCE', 'Bachelor of Science in Civil Engineering', 'College of Engineering Education', 170, 190, 'Covers structural analysis, transportation, geotechnical engineering, and construction management.'],
+            ['BSME', 'Bachelor of Science in Mechanical Engineering', 'College of Engineering Education', 170, 180, 'Includes thermodynamics, machine design, manufacturing processes, and mechanical systems integration.'],
+            ['BSAIS', 'Bachelor of Science in Accounting Information Systems', 'College of Accountancy Education', 165, 190, 'Integrates accounting practice with enterprise systems, analytics, and information security controls.'],
+            ['BSTM', 'Bachelor of Science in Tourism Management', 'College of Hospitality Education', 156, 230, 'Prepares students for travel operations, destination planning, and sustainable tourism development.'],
+            ['BSED-MATH', 'Bachelor of Secondary Education major in Mathematics', 'College of Teacher Education', 152, 190, 'Prepares future math educators through content mastery, pedagogy, and classroom assessment.'],
+            ['BPOLSCI', 'Bachelor of Arts in Political Science', 'College of Arts and Sciences', 150, 170, 'Explores political institutions, governance, public policy, and comparative political systems.'],
+            ['BSOA', 'Bachelor of Science in Office Administration', 'College of Business Administration', 150, 220, 'Trains students in office systems, records management, business communication, and administrative supervision.'],
         ];
 
         foreach ($courseData as [$code, $name, $department, $units, $capacity, $description]) {

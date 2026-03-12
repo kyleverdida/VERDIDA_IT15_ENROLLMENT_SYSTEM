@@ -2,6 +2,10 @@
 
 Laravel backend API for student enrollment, programs, subjects, dashboard analytics, and school-day calendar.
 
+## Documentation
+- API reference: `docs/API_DOCUMENTATION.md`
+- Frontend integration guide: `docs/FRONTEND_INTEGRATION.md`
+
 
 ## Tech Stack
 - PHP `8.2+` (project currently runs on PHP 8.5.x)

@@ -37,6 +37,11 @@ APP_URL=https://VERDIDA_IT15_ENROLLMENT_SYSTEM.test
 FORCE_HTTPS=true
 SESSION_SECURE_COOKIE=true
 
+WEATHER_API_KEY=your_weatherapi_key_here
+WEATHER_API_BASE_URL=https://api.weatherapi.com/v1
+WEATHER_CACHE_TTL_MINUTES=10
+WEATHER_STALE_TTL_MINUTES=180
+
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -149,12 +154,44 @@ Accept: application/json
 - `/api/courses`
 - `/api/subjects`
 - `/api/school-days`
+- `/api/weather`
 
 Frontend note for full program list:
 - Use `/api/courses?all=1` (or `/api/courses?per_page=all`) when you need all programs at once.
 
 For full endpoint docs, see:
 - `docs/API_DOCUMENTATION.md`
+
+## Weather API Integration (Backend + Frontend)
+
+Weather endpoint:
+- `GET /api/weather`
+
+Query options:
+- by city: `/api/weather?city=Davao`
+- by coordinates: `/api/weather?lat=7.1907&lon=125.4553`
+- include forecast days (1 to 5): `/api/weather?city=Davao&days=5`
+
+Returned fields include:
+- current temperature, humidity, wind speed
+- 5-day forecast entries with weather icon URL
+- location details and local time
+
+Rate limit and error handling:
+- If upstream weather provider rate-limits or fails, backend returns cached stale weather (if available) with `meta.warning`.
+- If no cache is available, backend returns a clear error JSON with proper status code.
+
+Smooth setup checklist:
+- Ensure `WEATHER_API_KEY` is from `weatherapi.com`.
+- Run `php artisan optimize:clear` after editing `.env`.
+- Keep frontend API URL pointed to backend HTTPS API: `VITE_API_URL=https://VERDIDA_IT15_ENROLLMENT_SYSTEM.test/api`.
+- If key was just created, allow a few minutes for provider activation.
+
+Quick backend verification:
+```powershell
+php artisan tinker --execute "echo config('services.weather.key') ? 'HAS_KEY' : 'EMPTY_KEY';"
+```
+Expected: `HAS_KEY`
 
 ## Current Status (2026-03-11)
 - API auth is protected by Sanctum (`auth:sanctum`) except `POST /api/login`.

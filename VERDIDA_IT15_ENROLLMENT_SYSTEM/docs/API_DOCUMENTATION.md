@@ -337,7 +337,116 @@ Success `200`:
 }
 ```
 
-## 5) School Day Endpoints
+## 5) Weather Endpoint
+
+### GET `/weather`
+Returns current weather and forecast data for a location.
+
+Backend implementation summary:
+- Controller: `App\\Http\\Controllers\\Api\\WeatherController@index`
+- Route protection: inside `auth:sanctum` group (requires Bearer token)
+- External provider (primary): WeatherAPI `/forecast.json`
+- Response contract: backend-normalized JSON shape used by frontend (`data.location`, `data.current`, `data.forecast`, `meta`)
+
+Query params:
+- `city` optional string (e.g. `Davao`)
+- `lat` optional numeric latitude
+- `lon` optional numeric longitude
+- `days` optional integer `1-5`, default `5`
+
+Validation rule:
+- Provide either `city`, or both `lat` and `lon`.
+
+Environment/config used by backend:
+- `WEATHER_API_KEY`
+- `WEATHER_API_BASE_URL` (default `https://api.weatherapi.com/v1`)
+- `WEATHER_CACHE_TTL_MINUTES` (default `10`)
+- `WEATHER_STALE_TTL_MINUTES` (default `180`)
+
+Provider requirement:
+- `WEATHER_API_KEY` must be a key from `weatherapi.com` when using `WEATHER_API_BASE_URL=https://api.weatherapi.com/v1`.
+- Do not use an OpenWeather key with WeatherAPI base URL.
+
+Backend request flow:
+1. Validate location input and normalize query.
+2. Check fresh cache first (`weather:<query>:days:<n>`).
+3. If cached, return immediately.
+4. If `WEATHER_API_KEY` is present, call WeatherAPI.
+5. If key is missing, use Open-Meteo fallback path.
+6. Normalize provider response to the same frontend-friendly schema.
+7. Store both fresh cache and stale cache copies.
+
+Examples:
+- `/api/weather?city=Davao&days=5`
+- `/api/weather?lat=7.1907&lon=125.4553`
+
+Success `200`:
+
+```json
+{
+  "data": {
+    "location": {
+      "name": "Davao",
+      "region": "Davao del Sur",
+      "country": "Philippines",
+      "lat": 7.07,
+      "lon": 125.6,
+      "localtime": "2026-03-12 18:00"
+    },
+    "current": {
+      "temperature_c": 30.2,
+      "temperature_f": 86.4,
+      "humidity": 68,
+      "wind_kph": 11.2,
+      "wind_mps": 3.11,
+      "condition": "Partly cloudy",
+      "icon": "https://cdn.weatherapi.com/weather/64x64/day/116.png",
+      "last_updated": "2026-03-12 17:45"
+    },
+    "forecast": [
+      {
+        "date": "2026-03-13",
+        "max_temp_c": 31.0,
+        "min_temp_c": 24.0,
+        "avg_temp_c": 27.1,
+        "humidity": 72,
+        "max_wind_kph": 13.0,
+        "condition": "Patchy rain nearby",
+        "icon": "https://cdn.weatherapi.com/weather/64x64/day/176.png"
+      }
+    ]
+  },
+  "meta": {
+    "provider": "weatherapi",
+    "query": "Davao",
+    "days": 5,
+    "cached": false,
+    "stale": false
+  }
+}
+```
+
+Possible errors:
+- `422` when location input is missing/invalid
+- `429` when provider rate limit is reached and no stale cache is available
+- `502` when provider is unavailable and no stale cache is available
+
+Graceful fallback behavior:
+- When provider fails/rate-limits and stale cache exists, response still returns `200` weather data with:
+  - `meta.cached = true`
+  - `meta.stale = true`
+  - `meta.warning` with fallback reason
+
+Provider notes:
+- `meta.provider` is `weatherapi` when WeatherAPI is used.
+- If WeatherAPI key is absent, backend can return `open-meteo` provider data using the same response structure.
+- Icons are always normalized to absolute URLs so frontend can render them directly.
+
+Operational tips:
+- Run `php artisan optimize:clear` after any `.env` weather changes.
+- Newly created provider keys can take a few minutes before successful upstream responses.
+
+## 6) School Day Endpoints
 
 ### GET `/school-days`
 Returns paginated school-day records.
@@ -376,7 +485,7 @@ Success `200`:
 }
 ```
 
-## 6) Subject Endpoint
+## 7) Subject Endpoint
 
 ### GET `/subjects`
 Returns flattened curriculum subjects from all programs.

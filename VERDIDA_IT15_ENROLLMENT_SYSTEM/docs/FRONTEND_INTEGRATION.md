@@ -217,6 +217,97 @@ export async function getDashboard() {
 }
 ```
 
+## Weather API Example
+
+Create a file like `src/services/weather.js`:
+
+```javascript
+import api from '../lib/api';
+
+export async function getWeatherByCity(city, days = 5) {
+  const { data } = await api.get('/weather', {
+    params: { city, days },
+  });
+
+  return data;
+}
+
+export async function getWeatherByCoords(lat, lon, days = 5) {
+  const { data } = await api.get('/weather', {
+    params: { lat, lon, days },
+  });
+
+  return data;
+}
+```
+
+Suggested UI handling pattern:
+
+```javascript
+import { getWeatherByCity, getWeatherByCoords } from '../services/weather';
+
+export async function loadWeather({ city, coords }) {
+  try {
+    const payload = city
+      ? await getWeatherByCity(city, 5)
+      : await getWeatherByCoords(coords.latitude, coords.longitude, 5);
+
+    // Use payload.data.current for temperature/humidity/wind
+    // Use payload.data.forecast for 5-day cards and icon rendering
+    // If payload.meta.stale is true, show payload.meta.warning as a soft warning
+    return payload;
+  } catch (error) {
+    const status = error?.response?.status;
+    const message = error?.response?.data?.message || 'Unable to load weather.';
+
+    if (status === 429) {
+      throw new Error('Weather requests are temporarily rate-limited. Please retry in a moment.');
+    }
+
+    throw new Error(message);
+  }
+}
+```
+
+Icon rendering:
+- Use `payload.data.current.icon` for current weather icon.
+- Use `item.icon` for each forecast card item.
+
+Geolocation example:
+
+```javascript
+export function getBrowserCoordinates() {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      reject(new Error('Geolocation is not supported by this browser.'));
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => resolve(position.coords),
+      () => reject(new Error('Unable to retrieve location.')),
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  });
+}
+```
+
+Weather troubleshooting:
+- If frontend shows weather unavailable, verify backend key is loaded:
+
+```powershell
+php artisan tinker --execute "echo config('services.weather.key') ? 'HAS_KEY' : 'EMPTY_KEY';"
+```
+
+- If result is `EMPTY_KEY`, set `WEATHER_API_KEY` in backend `.env`, then run:
+
+```powershell
+php artisan optimize:clear
+```
+
+- Ensure `VITE_API_URL` points to backend HTTPS API domain.
+- Ensure your weather key is from `weatherapi.com` when backend base URL is WeatherAPI.
+
 ## Fetch Alternative
 
 If you prefer `fetch` instead of Axios:

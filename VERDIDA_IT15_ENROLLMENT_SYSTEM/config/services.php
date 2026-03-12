@@ -39,4 +39,11 @@ return [
         'api_key' => env('FRONTEND_API_KEY'),
     ],
 
+    'weather' => [
+        'key' => env('WEATHER_API_KEY'),
+        'base_url' => env('WEATHER_API_BASE_URL', 'https://api.weatherapi.com/v1'),
+        'cache_ttl_minutes' => (int) env('WEATHER_CACHE_TTL_MINUTES', 10),
+        'stale_ttl_minutes' => (int) env('WEATHER_STALE_TTL_MINUTES', 180),
+    ],
+
 ];

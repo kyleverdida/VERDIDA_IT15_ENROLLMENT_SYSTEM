@@ -463,6 +463,13 @@ Query params:
 - `per_page=all` optional alias to return all school-day records
 - `day_type` optional: `regular`, `holiday`, `event`
 
+Behavior:
+- Use `all=1` or `per_page=all` when frontend calendar views need full school-year highlights in one response.
+
+Examples:
+- `/api/school-days?all=1`
+- `/api/school-days?per_page=all`
+
 ### POST `/school-days`
 Creates a school-day record.
 
@@ -523,7 +530,7 @@ Success `200`:
 }
 ```
 
-## Current API Route Inventory (22 routes)
+## Current API Route Inventory (23 routes)
 - `POST /api/login`
 - `GET /api/me`
 - `POST /api/logout`
@@ -546,6 +553,7 @@ Success `200`:
 - `PUT|PATCH /api/school-days/{school_day}`
 - `DELETE /api/school-days/{school_day}`
 - `GET /api/subjects`
+- `GET /api/weather`
 
 ## HTTPS Verification Commands
 

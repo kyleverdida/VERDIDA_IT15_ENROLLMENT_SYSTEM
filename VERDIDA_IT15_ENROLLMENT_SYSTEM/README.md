@@ -15,6 +15,20 @@ Laravel backend API for student enrollment, programs, subjects, dashboard analyt
 
 ## Backend Setup Instructions
 
+### Quick Setup Commands
+
+```bash
+# Backend Setup
+cd C:/laragon/www/VERDIDA_IT15_ENROLLMENT_SYSTEM/VERDIDA_IT15_ENROLLMENT_SYSTEM
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve
+```
+
+Note: In this project, prefer Laragon HTTPS domain for real API use (`https://VERDIDA_IT15_ENROLLMENT_SYSTEM.test/api`) instead of `php artisan serve`.
+
 ### 1. Go to backend folder
 ```powershell
 cd C:\laragon\www\VERDIDA_IT15_ENROLLMENT_SYSTEM\VERDIDA_IT15_ENROLLMENT_SYSTEM

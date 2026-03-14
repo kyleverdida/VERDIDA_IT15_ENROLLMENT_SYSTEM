@@ -12,13 +12,16 @@ class SchoolDayController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $perPage = (int) $request->query('per_page', 20);
+        $perPageRaw = $request->query('per_page');
+        $all = filter_var($request->query('all', false), FILTER_VALIDATE_BOOLEAN)
+            || (is_string($perPageRaw) && strtolower($perPageRaw) === 'all');
+        $perPage = $all ? max(1, SchoolDay::count()) : (int) ($perPageRaw ?? 20);
         $type = $request->query('day_type');
 
         $days = SchoolDay::query()
             ->when($type, fn ($query) => $query->where('day_type', $type))
             ->orderBy('date')
-            ->paginate(max(1, min($perPage, 100)));
+            ->paginate($all ? $perPage : max(1, min($perPage, 100)));
 
         return response()->json($days);
     }

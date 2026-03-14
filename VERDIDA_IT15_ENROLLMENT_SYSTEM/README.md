@@ -163,6 +163,9 @@ Accept: application/json
 Frontend note for full program list:
 - Use `/api/courses?all=1` (or `/api/courses?per_page=all`) when you need all programs at once.
 
+Frontend note for full school calendar list:
+- Use `/api/school-days?all=1` (or `/api/school-days?per_page=all`) when you need all school-day records for calendar highlights.
+
 For full endpoint docs, see:
 - `docs/API_DOCUMENTATION.md`
 

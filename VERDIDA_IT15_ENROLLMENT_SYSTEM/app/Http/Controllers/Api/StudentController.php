@@ -54,6 +54,7 @@ class StudentController extends Controller
     {
         $validated = $request->validate([
             'student_number' => ['required', 'string', 'max:50', 'unique:students,student_number'],
+            'year_level' => ['nullable', 'integer', 'between:1,4'],
             'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['required', 'string', 'max:100'],
             'middle_name' => ['nullable', 'string', 'max:100'],
@@ -80,6 +81,7 @@ class StudentController extends Controller
     {
         $validated = $request->validate([
             'student_number' => ['sometimes', 'required', 'string', 'max:50', Rule::unique('students', 'student_number')->ignore($student->id)],
+            'year_level' => ['nullable', 'integer', 'between:1,4'],
             'first_name' => ['sometimes', 'required', 'string', 'max:100'],
             'last_name' => ['sometimes', 'required', 'string', 'max:100'],
             'middle_name' => ['nullable', 'string', 'max:100'],

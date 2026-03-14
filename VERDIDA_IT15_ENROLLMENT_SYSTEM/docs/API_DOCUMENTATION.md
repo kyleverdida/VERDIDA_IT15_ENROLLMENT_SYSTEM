@@ -200,6 +200,7 @@ Request body:
 ```json
 {
   "student_number": "2026-0501",
+  "year_level": 1,
   "first_name": "Maria",
   "last_name": "Cruz",
   "middle_name": "Lopez",
@@ -213,6 +214,8 @@ Request body:
 
 Success `201`: created student in UI-ready format (includes `student_id` and `course`).
 
+Optional fields include `year_level` (integer `1` to `4`).
+
 ### GET `/students/{student}`
 Returns one student in UI-ready format.
 
@@ -220,6 +223,8 @@ Success `200`: student object with `course` and `courses` fields.
 
 ### PUT/PATCH `/students/{student}`
 Updates student fields.
+
+Optional fields include `year_level` (integer `1` to `4`).
 
 Success `200`: updated student in UI-ready format.
 
@@ -364,6 +369,7 @@ Environment/config used by backend:
 - `WEATHER_STALE_TTL_MINUTES` (default `180`)
 
 Provider requirement:
+
 - `WEATHER_API_KEY` must be a key from `weatherapi.com` when using `WEATHER_API_BASE_URL=https://api.weatherapi.com/v1`.
 - Do not use an OpenWeather key with WeatherAPI base URL.
 
@@ -453,6 +459,8 @@ Returns paginated school-day records.
 
 Query params:
 - `per_page` optional integer, max `100`, default `20`
+- `all` optional boolean; when `true`, returns all school-day records
+- `per_page=all` optional alias to return all school-day records
 - `day_type` optional: `regular`, `holiday`, `event`
 
 ### POST `/school-days`

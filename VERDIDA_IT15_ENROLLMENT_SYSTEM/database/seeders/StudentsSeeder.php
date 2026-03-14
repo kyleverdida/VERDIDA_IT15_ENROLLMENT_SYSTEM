@@ -105,6 +105,7 @@ class StudentsSeeder extends Seeder
 
             $rows[] = [
                 'student_number' => '2026-' . str_pad((string) $i, 4, '0', STR_PAD_LEFT),
+                'year_level' => fake()->numberBetween(1, 4),
                 'first_name' => $firstName,
                 'middle_name' => fake()->optional()->randomElement($middleNames),
                 'last_name' => fake()->randomElement($lastNames),

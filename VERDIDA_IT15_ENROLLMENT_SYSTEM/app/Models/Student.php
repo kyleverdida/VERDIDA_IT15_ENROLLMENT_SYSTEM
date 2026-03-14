@@ -12,6 +12,7 @@ class Student extends Model
 
     protected $fillable = [
         'student_number',
+        'year_level',
         'first_name',
         'last_name',
         'middle_name',
@@ -24,6 +25,7 @@ class Student extends Model
 
     protected $casts = [
         'date_of_birth' => 'date',
+        'year_level' => 'integer',
     ];
 
     protected $appends = ['name'];
